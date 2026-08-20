@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SpawnerCoints : MonoBehaviour
+public class SpawnerCoins : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPoints;
     [SerializeField] private Coin _coinPrefab;
@@ -17,17 +17,16 @@ public class SpawnerCoints : MonoBehaviour
         SpawnCoin(null);
     }
 
-
     private void SpawnCoin(Coin oldCoin)
     {
         if (oldCoin != null)
         {
-            oldCoin.IsTake -= SpawnCoin;
+            oldCoin.Taken -= SpawnCoin;
             Destroy(oldCoin.gameObject);
         }
 
         _currentCoin = Instantiate(_coinPrefab, GetRandomPosition().position, Quaternion.identity);
-        _currentCoin.IsTake += SpawnCoin;
+        _currentCoin.Taken += SpawnCoin;
     }
     
     private Transform GetRandomPosition()
