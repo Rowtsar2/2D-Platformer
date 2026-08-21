@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private InputReader _inputReader;
 
     private float _direction;
-    private bool _jump;
+    private bool _isJump;
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     {
         _playerMover.Move(_direction);
 
-        if (_jump && _groundChecker.IsGround)
+        if (_isJump && _groundChecker.IsGround)
         {
             _playerJumper.Jump();
         }
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
     private void OnJump(bool isJumped)
     {
-        _jump = isJumped;
+        _isJump = isJumped;
     }
 
     private void OnMove(float direction)

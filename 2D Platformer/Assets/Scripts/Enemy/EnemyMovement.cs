@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _reachDistance = 0.2f;
 
-    private bool _eventInvoked;
+    private bool _canEventInvoked;
 
     private Rigidbody2D _rigidbody2D;
     private Transform _currentTarget;
@@ -31,16 +31,16 @@ public class EnemyMovement : MonoBehaviour
 
         _rigidbody2D.velocity = new Vector2(_moveSpeed * direction, _rigidbody2D.velocity.y);
 
-        if (_eventInvoked == false && Vector2.Distance(transform.position, _currentTarget.position) < _reachDistance)
+        if (_canEventInvoked == false && Vector2.Distance(transform.position, _currentTarget.position) < _reachDistance)
         {
-            _eventInvoked = true;
+            _canEventInvoked = true;
             PointReached?.Invoke();
         }
     }
 
     public void SetTarget(Transform target)
     {
-        _eventInvoked = false;
+        _canEventInvoked = false;
         _currentTarget = target;
     }
 }
