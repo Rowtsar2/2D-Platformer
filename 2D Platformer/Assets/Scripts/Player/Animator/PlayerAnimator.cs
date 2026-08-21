@@ -3,10 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
 {
-    private static readonly int Speed = PlayerAnimatorData.Params.Speed;
-    private static readonly int IsGrounded = PlayerAnimatorData.Params.IsGrounded;
-    private static readonly int VerticalVelocity = PlayerAnimatorData.Params.VerticalVelocity;
-
     private Animator _animator;
     
     private void Awake()
@@ -16,16 +12,16 @@ public class PlayerAnimator : MonoBehaviour
     
     public void PlayMove(float horizontalInput)
     {
-        _animator.SetFloat(Speed, Mathf.Abs(horizontalInput));
+        _animator.SetFloat(PlayerAnimatorParams.Speed, Mathf.Abs(horizontalInput));
     }
 
     public void SetGrounded(bool isGrounded)
     {
-        _animator.SetBool(IsGrounded, isGrounded);
+        _animator.SetBool(PlayerAnimatorParams.IsGrounded, isGrounded);
     }
 
     public void SetVerticalVelocity(float verticalVelocity)
     {
-        _animator.SetFloat(VerticalVelocity, verticalVelocity);
+        _animator.SetFloat(PlayerAnimatorParams.VerticalVelocity, verticalVelocity);
     }
 }
